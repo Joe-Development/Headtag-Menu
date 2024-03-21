@@ -1,6 +1,6 @@
 # Headtags
 
-## JoeV2s Developer Community [Discord]
+## JoeV2s Developer Community 
 [[Developer Discord]](https://discord.gg/sNHg4X7xt2)
 
 ### Version 1.0
