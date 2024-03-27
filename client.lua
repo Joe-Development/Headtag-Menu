@@ -43,14 +43,6 @@ if Config.TagsForStaffOnly then
 end
 prefixStr = ""
 
-
-
-
-
-
-
-
-
 _menuPool = NativeUI.CreatePool()
 
 if Config.playerNameTitle then
@@ -74,30 +66,43 @@ _menuPool:Add(headtagsMenu)
 local tagData = {} 
 
 
-function AddHeadtagMenuItem(menu, data)
-    local headtagItem = NativeUI.CreateItem("~y~[" .. data.id .. "] " .. data.tag, "Select HeadTag: " .. data.tag)
-    menu:AddItem(headtagItem)
-
-    headtagsMenu.OnItemSelect = function(sender, item, index)
-        local selectedTag = tagData[index].tag
-		TriggerServerEvent("JoeV2:HeadTags:setTag", selectedTag)  
-		print("Selected Tag: " .. selectedTag)
-    end
-end
-
 RegisterNetEvent("JoeV2:HeadTags:receiveData")
 AddEventHandler("JoeV2:HeadTags:receiveData", function(receivedTagData)
     tagData = receivedTagData or {}
     if #tagData > 0 then
         headtagsMenu:Clear()
+        local hideTagItem = NativeUI.CreateItem("Hide Headtag ", "Hide your currently selected headtag")
+		hideTagItem:RightLabel(">")
+        headtagsMenu:AddItem(hideTagItem)
+        local hideAllTagsItem = NativeUI.CreateItem("Hide All HeadTags", "Hide all HeadTags")
+		hideAllTagsItem:RightLabel(">")
+        headtagsMenu:AddItem(hideAllTagsItem)
         for _, data in ipairs(tagData) do
-            AddHeadtagMenuItem(headtagsMenu, data)
+            local headtagItem = NativeUI.CreateItem("~y~[" .. data.id .. "] " .. data.tag, "Select HeadTag: " .. data.tag)
+            headtagsMenu:AddItem(headtagItem)
         end
-		headtagsMenu:Visible(not headtagsMenu:Visible())
+        headtagsMenu.OnItemSelect = function(sender, item, index)
+			local value = false
+            if index == 1 then
+				ExecuteCommand("tag-toggle")
+                print("Tag hidden")
+            elseif index == 2 then
+				ExecuteCommand("tags-toggle")
+                print("All tags hidden")
+            else
+                local selectedTag = tagData[index - 2].tag 
+                TriggerServerEvent("JoeV2:HeadTags:setTag", selectedTag)
+                print("Selected Tag: " .. selectedTag)
+            end
+        end
+
+        headtagsMenu:RefreshIndex()
+        headtagsMenu:Visible(not headtagsMenu:Visible())
     else
-		print("no tags available")
+        print("No tags available")
     end
 end)
+
 
 _menuPool:MouseControlsEnabled(false)
 _menuPool:ControlDisablingEnabled(false)
