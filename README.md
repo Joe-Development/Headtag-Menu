@@ -3,7 +3,7 @@
 ## JoeV2s Developer Community 
 [[Developer Discord]](https://discord.gg/sNHg4X7xt2)
 
-### Version 1.0
+### Version 1.0.3
 - yes there will be further updates
   
 #### Commands:
