@@ -43,6 +43,14 @@ if Config.TagsForStaffOnly then
 end
 prefixStr = ""
 
+
+
+
+
+
+
+
+
 _menuPool = NativeUI.CreatePool()
 
 if Config.playerNameTitle then
@@ -119,11 +127,6 @@ end)
 RegisterNetEvent("ID:HideTag")
 AddEventHandler("ID:HideTag", function(arr, error)
 	hideTags = arr; 
-end)
-
-RegisterNetEvent("headtag:SetToHUD")
-AddEventHandler("headtag:SetToHUD", function (headtag)
-	exports['Badssentials']:setPlayerHeadTagGui(headtag)
 end)
 
 
