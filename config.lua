@@ -35,5 +35,14 @@ Config = {
 	notify_settings = {
 		duration = 5000,
 		type = 4
+	},
+
+	headtag_hud = {
+		enabled = true,
+		x = 1.400,
+		y = 0.505,
+		fontSize = 0.35,
+		defaultText = "~t~Headtag: ~b~{HEADTAG}",
+		
 	}
 } 
