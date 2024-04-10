@@ -55,18 +55,31 @@ _menuPool = NativeUI.CreatePool()
 
 if Config.playerNameTitle then
 	local playerName = GetPlayerName(PlayerId())
+	local RuntimeTXD = CreateRuntimeTxd('Custom_Menu_Head')
+    local Object = CreateDui(Config.HeadTagMenuImage, 512, 128)
+    _G.Object = Object
+    local TextureThing = GetDuiHandle(Object)
+    local Texture = CreateRuntimeTextureFromDuiHandle(RuntimeTXD, 'Custom_Menu_Head', TextureThing)
+    Menuthing = "Custom_Menu_Head"
 	headtagsMenu = NativeUI.CreateMenu(playerName, "Select a ~b~HeadTag ", Config.MenuPos.x, Config.MenuPos.y)
-	if Config.customMenuTexture then
-		local background = Sprite.New(Config.menutexture_fileName, "banner", 0, 0, 512, 128)
+	if Config.useHeadTagMenuImage then
+		local background = Sprite.New(Menuthing, Menuthing, 0, 0, 512, 128)
     	headtagsMenu:SetBannerSprite(background, true)		
 	end
 else
 	headtagsMenu = NativeUI.CreateMenu(Config.headTagMenuTitle, "Select a ~b~HeadTag ", Config.MenuPos.x, Config.MenuPos.y)	
-	if Config.customMenuTexture then
-		local background = Sprite.New(Config.menutexture_fileName, "banner", 0, 0, 512, 128)
+	local RuntimeTXD = CreateRuntimeTxd('Custom_Menu_Head')
+    local Object = CreateDui(Config.HeadTagMenuImage, 512, 128)
+    _G.Object = Object
+    local TextureThing = GetDuiHandle(Object)
+    local Texture = CreateRuntimeTextureFromDuiHandle(RuntimeTXD, 'Custom_Menu_Head', TextureThing)
+    Menuthing = "Custom_Menu_Head"
+	if Config.useHeadTagMenuImage then
+		local background = Sprite.New(Menuthing, Menuthing, 0, 0, 512, 128)
     	headtagsMenu:SetBannerSprite(background, true)		
 	end
 end
+
 
 
 _menuPool:Add(headtagsMenu)
