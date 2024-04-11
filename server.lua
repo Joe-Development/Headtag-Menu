@@ -26,10 +26,10 @@ function SendNoti(recipient, message, type)
         end
     elseif Config.notify_settings.type == 2 then 
         if type == "success" then 
-            TriggerClientEvent ('codem-notification:Create', recipient, message, 'success', 'success', Config.notify_settings.duration)
+            TriggerClientEvent('codem-notification', recipient, message, 4000, 'check', options)
         elseif type == "error" then 
-            TriggerClientEvent ('codem-notification:Create', recipient, message, 'error', 'error', Config.notify_settings.duration)
-
+            TriggerClientEvent('codem-notification', recipient, message, 4000, 'error', options)
+ 
         end
     elseif Config.notify_settings.type == 3 then 
         if type == "success" then 
@@ -45,7 +45,6 @@ function SendNoti(recipient, message, type)
 		end
     end
 end
-
 
 
 Citizen.CreateThread(function()
