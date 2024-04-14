@@ -7,8 +7,6 @@ Config = {
 	RequiresLineOfSight = true, -- Requires the player be in their line of sight for tags to be shown
 	FormatDisplayName = "[{SERVER_ID}]",
     FortmatHiddenName = "",
-	UseKeyBind = false, -- It will only show on keybind press
-	KeyBind = 289, -- F2 -- USE https://docs.fivem.net/docs/game-references/controls/ for keycodes
 	roleList = { 
 		{'0', '~w~Civillian '},
 		{'1147775268577087549', "~o~Co Owner "}, -- -- done
