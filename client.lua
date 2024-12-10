@@ -88,8 +88,19 @@ local tagData = {}
 
 
 RegisterNetEvent("JoeV2:HeadTags:receiveData")
-AddEventHandler("JoeV2:HeadTags:receiveData", function(receivedTagData)
+AddEventHandler("JoeV2:HeadTags:receiveData", function(receivedTagData, args)
     tagData = receivedTagData or {}
+	if args then
+		args = tonumber(args)
+		if tagData[args] then
+			local selectedTag = tagData[args].tag
+			TriggerServerEvent("JoeV2:HeadTags:setTag", selectedTag)
+			print("Selected Tag: " .. selectedTag)
+			return
+		else
+			return
+		end
+	end
     if #tagData > 0 then
         headtagsMenu:Clear()
         local hideTagItem = NativeUI.CreateItem("Hide Headtag ", "Hide your currently selected headtag")

@@ -223,7 +223,7 @@ RegisterCommand(Config.commandInfo.command, function(source, args, rawCommand)
 		for i, tag in ipairs(tags) do
 			table.insert(tagData, {id = i, tag = tag})
 		end
-		TriggerClientEvent("JoeV2:HeadTags:receiveData", source, tagData)
+		TriggerClientEvent("JoeV2:HeadTags:receiveData", source, tagData, args[1])
 	else
 		type = Config.notify_settings.type
 		SendNoti(source, "No HeadTags", "error")
