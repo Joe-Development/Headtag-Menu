@@ -11,7 +11,7 @@ A FiveM resource that adds customizable head tags above players with role-based 
 
 ## Dependencies
 - [ox_lib](https://github.com/overextended/ox_lib)
-- [RageUI]([https://github.com/ItsikNox/RageUI](https://github.com/Joe-Development/Headtag-Menu/releases/download/release/RageUI.zip))
+- [RageUI](https://github.com/Joe-Development/Headtag-Menu/releases/download/release/RageUI.zip)
 
 ## Installation
 1. Download the latest release
