@@ -43,7 +43,7 @@ Config.FormatDisplayName = "{HEADTAG} {SPEAKING}[{SERVER_ID}]"
 ```
 
 
-### Roles
+### Config Example 
 ```lua
 Config.roleList = {
     { ace = "headtags.member", label = "~g~Member"},
