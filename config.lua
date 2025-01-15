@@ -1,47 +1,55 @@
-Config = {
-	Prefix = '^9[^1DEV-headtags^9] ^3',
-	TagsForStaffOnly = false, -- "DiscordTagIDs.Use.Tag-Toggle"
-	ShowOwnTag = true, -- Should the tag also be shown for own user?
-	UseDiscordName = false,
-	ShowDiscordDescrim = false, -- Should it show Badger#0002 ?
-	RequiresLineOfSight = true, -- Requires the player be in their line of sight for tags to be shown
-	FormatDisplayName = "[{SERVER_ID}]",
-    FortmatHiddenName = "",
-	roleList = { 
-		{'0', '~w~Civillian '},
-		{'1147775268577087549', "~o~Co Owner "}, -- -- done
-		{'1147775268577087549', "~p~Owner "}, -- -- done
-	},
+Config = {}
 
-	-- Headtag Menu Stuff
-	useHeadTagMenuImage = true,
-	HeadTagMenuImage = 'https://cdn.discordapp.com/attachments/1161069645827166304/1227568064170819676/tumblr_68144a71c3035f7dc7aa8aafa9d21e78_fd150a88_2048.gif?ex=6628e0d9&is=66166bd9&hm=3b2da5214ba65c7db3aec1850a231661773ec12d35b5397ee29cbed3598e770d&', -- [Custom banner IMGUR or GIPHY URLs go here (Includes Discord Image URLS) ]
-	playerNameTitle = false,
-	headTagMenuTitle = "", -- only work if [ playerNameTitle ] is set to false
-	MenuPos = {
-		x = 1450,
-		y = 200
-	},
-	commandInfo = {
-		command = 'headtags',
-	},
+Config.Debug = true
 
-	-- type 0 = Defult chat notifications
-	-- type 1 = okokNotification
-	-- type 2 = codem Notify
-	-- type 3 = mythic Notify
-	-- type 4 = atlas Notify
-	notify_settings = {
-		duration = 5000,
-		type = 4
-	},
+-- If true, the player's own headtag will be shown.
+Config.ShowOwnTag = true
 
-	headtag_hud = {
-		enabled = true,
-		x = 1.400,
-		y = 0.505,
-		fontSize = 0.35,
-		defaultText = "~t~Headtag: ~b~{HEADTAG}",
-		
-	}
-} 
+-- Format Display Name is the format of the player's headtag.
+-- {HEADTAG} is the player's headtag.
+-- {SPEAKING} is the player's speaking status aka colour.
+-- {SERVER_ID} is the server's ID.
+Config.FormatDisplayName = "{HEADTAG} {SPEAKING}[{SERVER_ID}]"
+
+-- Display Height is the height of the headtag above the player.
+-- a higher value will be higher above the player and a lower value will be lower.
+Config.DisplayHeight = 1.3
+
+-- Custom Menu Banner 
+Config.Banner = {
+	enabled = true,
+	
+	-- has to be 512x128
+	image = "https://i.imgur.com/1234567890.png",
+}
+
+-- The distance you have to be within to see the headtag.
+Config.PlayerNamesDist = 15
+
+-- If true, the search button for the headtag menu will be enabled.
+Config.EnableSearch = true
+
+Config.menu = {
+	x = 1400,
+	y = 100,
+}
+
+-- DEVELOPERS
+Config.noclip = {
+	ace = "headtags.noclip",
+}
+
+-- If true, the highest role will be set automatically.
+
+Config.AutoSetHighestRole = false
+
+-- The Last in the index will be the highest role.
+-- aka the highest role will be the last one in the table or the bottem one.
+
+Config.roleList = {
+	{ ace = "headtags.member", label = "~g~Member"},
+	{ ace = "headtags.developer", label = "~b~Developer"},
+	{ ace = "headtags.staff", label = "~r~Staff"},
+	{ ace = "headtags.owner", label = "~p~Owner"},
+}
+
