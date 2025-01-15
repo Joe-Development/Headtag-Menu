@@ -15,14 +15,6 @@ Config.FormatDisplayName = "{HEADTAG} {SPEAKING}[{SERVER_ID}]"
 -- a higher value will be higher above the player and a lower value will be lower.
 Config.DisplayHeight = 1.3
 
--- Custom Menu Banner 
-Config.Banner = {
-	enabled = true,
-	
-	-- has to be 512x128
-	image = "https://i.imgur.com/1234567890.png",
-}
-
 -- The distance you have to be within to see the headtag.
 Config.PlayerNamesDist = 15
 
