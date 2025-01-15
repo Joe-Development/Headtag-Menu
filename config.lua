@@ -27,6 +27,9 @@ Config.menu = {
 }
 
 -- DEVELOPERS
+-- NO THIS IS NOT A NO CLIP
+-- this is the perm they need to trigger the server event to hide their full headtag and server id so when they are in no clip nothing is giving them away
+-- that they are there
 Config.noclip = {
 	ace = "headtags.noclip",
 }
