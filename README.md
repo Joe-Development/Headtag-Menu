@@ -8,7 +8,6 @@ A FiveM resource that adds customizable head tags above players with role-based 
 - Search functionality for tags
 - Speaking indicator changes color when players talk
 - Noclip compatibility
-- Custom menu banner support
 
 ## Dependencies
 - [ox_lib](https://github.com/overextended/ox_lib)
