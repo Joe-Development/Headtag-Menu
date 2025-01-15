@@ -41,14 +41,3 @@ Example:
 ```lua
 Config.FormatDisplayName = "{HEADTAG} {SPEAKING}[{SERVER_ID}]"
 ```
-
-
-### Config Example 
-```lua
-Config.roleList = {
-    { ace = "headtags.member", label = "~g~Member"},
-    { ace = "headtags.developer", label = "~b~Developer"},
-    { ace = "headtags.staff", label = "~r~Staff"},
-    { ace = "headtags.owner", label = "~p~Owner"},
-}
-```
