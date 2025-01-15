@@ -143,12 +143,6 @@ Citizen.CreateThread(function()
     end
 end)
 
-CreateThread(function()
-	if Config.Banner.enabled then
-        
-	end
-end)
-
 local mainMenu = RageUI.CreateMenu("Headtag Menu", "~b~Headtag Menu | By JoeV2", 1400, 100, nil, nil, 255, 255, 255, 255)
 mainMenu:SetTotalItemsPerPage(8)
 
