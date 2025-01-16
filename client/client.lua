@@ -37,9 +37,11 @@ function DrawText3D(x, y, z, text)
     DrawText(_x, _y)
 end
 
+
+
 RegisterNetEvent("jd-headtags:client:hideTag")
 AddEventHandler("jd-headtags:client:hideTag", function(arr, error)
-	hideTags = arr;
+	hideTags = arr
 end)
 
 RegisterNetEvent("jd-headtags:client:toggleAllTags")
@@ -240,3 +242,4 @@ function OpenHeadtagMenu()
         end
     end)
 end
+

@@ -5,7 +5,6 @@ description 'Headtag System'
 version '1.1.0'
 lua54 'yes'
 
-
 shared_scripts {
     'config.lua',
     '@ox_lib/init.lua',

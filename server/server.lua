@@ -5,15 +5,17 @@ local hideAll = {}
 local hideTags = {}
 
 function HideUserTag(src)
-	if GetIndex(hideTags, GetPlayerName(src)) == nil then 
-		table.insert(hideTags, GetPlayerName(src))
+	local playerName = GetPlayerName(src)
+	if playerName and GetIndex(hideTags, playerName) == nil then 
+		table.insert(hideTags, playerName)
 		TriggerClientEvent('jd-headtags:HideTag', -1, hideTags, false)
 	end
 end
 
 function ShowUserTag(src)
-	if GetIndex(hideTags, GetPlayerName(src)) ~= nil then
-		table.remove(hideTags, GetIndex(hideTags, GetPlayerName(src)))
+	local playerName = GetPlayerName(src)
+	if playerName and GetIndex(hideTags, playerName) ~= nil then
+		table.remove(hideTags, GetIndex(hideTags, playerName))
 		TriggerClientEvent('jd-headtags:HideTag', -1, hideTags, false)
 	end
 end
@@ -115,7 +117,8 @@ AddEventHandler('jd-headtags:server:getTags', function()
 
     for i = 1, #Config.roleList do
         local role = Config.roleList[i]
-        if IsPlayerAceAllowed(source, role.ace) then
+		---@diagnostic disable-next-line: param-type-mismatch
+        if IsPlayerAceAllowed(source, role.ace) or IsPlayerAceAllowed(source, Config.allTags) then
             Debug(GetPlayerName(source) .. " has tag for: " .. role.label)
             table.insert(roleAccess, role.label)
             highestRole = role.label
