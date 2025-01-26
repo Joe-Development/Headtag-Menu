@@ -149,6 +149,7 @@ local mainMenu = RageUI.CreateMenu("Headtag Menu", "~b~Headtag Menu | By JoeV2",
 mainMenu:SetTotalItemsPerPage(8)
 
 
+---@diagnostic disable-next-line: inject-field
 mainMenu.Closed = function()
     isMenuOpen = false
 end
@@ -165,10 +166,22 @@ end, false)
 function OpenHeadtagMenu()
     if isMenuOpen then return end
 
+    local headtags = lib.callback.await('jd-headtags:return-tags')
+
+    if not headtags or #headtags == 0 then
+        lib.notify({
+            title = 'Headtag Menu',
+            description = 'You don\'t have access to any headtags',
+            type = 'error',
+            position = 'center-right',
+            duration = 5000
+        })
+        return
+    end
+
     isMenuOpen = true
     searchQuery = ""
     RageUI.Visible(mainMenu, true)
-    local headtags = lib.callback.await('jd-headtags:return-tags')
 
     Citizen.CreateThread(function()
         while isMenuOpen do
