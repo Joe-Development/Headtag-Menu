@@ -6,7 +6,7 @@ local hideTags = {}
 
 function HideUserTag(src)
 	local playerName = GetPlayerName(src)
-	if playerName and GetIndex(hideTags, playerName) == nil then 
+	if playerName and GetIndex(hideTags, playerName) == nil then
 		table.insert(hideTags, playerName)
 		TriggerClientEvent('jd-headtags:HideTag', -1, hideTags, false)
 	end
@@ -126,16 +126,17 @@ AddEventHandler('jd-headtags:server:getTags', function()
         end
     end
 
-    if #roleAccess == 0 then
-        table.insert(roleAccess, defaultRole)
-    end
+    if hasAnyPermission then
+        prefixes[source] = roleAccess
 
-    prefixes[source] = roleAccess
-
-    if Config.AutoSetHighestRole then
-        activeTagTracker[source] = highestRole
+        if Config.AutoSetHighestRole then
+            activeTagTracker[source] = highestRole
+        else
+            activeTagTracker[source] = defaultRole
+        end
     else
-        activeTagTracker[source] = hasAnyPermission and defaultRole or ""
+        prefixes[source] = {}
+        activeTagTracker[source] = ""
     end
 
     TriggerClientEvent("jd-headtags:client:updateTags", -1, prefixes, activeTagTracker, false)
