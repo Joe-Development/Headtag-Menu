@@ -38,7 +38,14 @@ Config.noclip = {
 	ace = "headtags.noclip",
 }
 
-
+-- HUD Configuration
+Config.hud = {
+    enabled = true,  -- Enable/disable the headtag HUD
+    position = {
+        x = 30,      -- Distance from right edge of screen
+        y = 30       -- Distance from top of screen
+    }
+}
 
 -- If true, the highest role will be set automatically.
 Config.AutoSetHighestRole = false
@@ -49,8 +56,9 @@ Config.allTags = 'headtags.all'
 -- The Last in the index will be the highest role.
 -- aka the highest role will be the last one in the table or the bottem one.
 Config.roleList = {
-	{ ace = "headtags.member", label = "~g~Member"},
-	{ ace = "headtags.developer", label = "~b~Developer"},
-	{ ace = "headtags.staff", label = "~r~Staff"},
-	{ ace = "headtags.owner", label = "~p~Owner"},
+	{ ace = "easyadmin", label = "~g~Member"},
+	{ ace = "easyadmin", label = "~b~Developer"},
+	{ ace = "easyadmin", label = "~r~Staff"},
+	{ ace = "easyadmin", label = "~p~Owner"},
 }
+
