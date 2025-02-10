@@ -32,6 +32,7 @@ function ToggleTag(source)
     local name = GetPlayerName(source)
     if HasValue(hidePrefix, name) then
         table.remove(hidePrefix, GetIndex(hidePrefix, name))
+		TriggerClientEvent("jd-headtags:client:updateHeadtag", source, activeTagTracker[source])
         TriggerClientEvent("jd-headtags:client:toggleTag", -1, hidePrefix, false)
 		lib.notify(source, {
 			title = 'Headtag',
@@ -42,6 +43,7 @@ function ToggleTag(source)
 		})
     else
         table.insert(hidePrefix, name)
+		TriggerClientEvent("jd-headtags:client:updateHeadtag", source, 'N/A')
         TriggerClientEvent("jd-headtags:client:toggleTag", -1, hidePrefix, true)
 		lib.notify(source, {
 			title = 'Headtag',
@@ -96,6 +98,7 @@ function SetUserTag(source, ind)
 	if prefixes[source] ~= nil and prefixes[source][ind] ~= nil then
 		activeTagTracker[source] = prefixes[source][ind]
 		TriggerClientEvent("jd-headtags:client:updateTags", -1, prefixes, activeTagTracker, false)
+		TriggerClientEvent("jd-headtags:client:updateHeadtag", source, prefixes[source][ind])
 		return true
 	end
 	return false
@@ -140,6 +143,7 @@ AddEventHandler('jd-headtags:server:getTags', function()
     end
 
     TriggerClientEvent("jd-headtags:client:updateTags", -1, prefixes, activeTagTracker, false)
+	TriggerClientEvent("jd-headtags:client:updateHeadtag", source, activeTagTracker[source])
 end)
 
 AddEventHandler('playerDropped', function()
