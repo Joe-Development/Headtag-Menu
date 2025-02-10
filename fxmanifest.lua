@@ -2,8 +2,10 @@ fx_version 'cerulean'
 game 'gta5'
 author 'JoeV2@Freech\'s Development'
 description 'Headtag System'
-version '1.1.2'
+version '1.1.5'
 lua54 'yes'
+
+ui_page 'html/index.html'
 
 shared_scripts {
     'config.lua',
@@ -43,6 +45,12 @@ client_scripts {
 
 server_scripts {
     "server/server.lua"
+}
+
+files {
+    'html/index.html',
+    'html/css/style.css',
+    'html/js/script.js'
 }
 
 dependencies {
