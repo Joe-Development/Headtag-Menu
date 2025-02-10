@@ -56,9 +56,9 @@ Config.allTags = 'headtags.all'
 -- The Last in the index will be the highest role.
 -- aka the highest role will be the last one in the table or the bottem one.
 Config.roleList = {
-	{ ace = "easyadmin", label = "~g~Member"},
-	{ ace = "easyadmin", label = "~b~Developer"},
-	{ ace = "easyadmin", label = "~r~Staff"},
-	{ ace = "easyadmin", label = "~p~Owner"},
+	{ ace = "headtag.member", label = "~g~Member"},
+	{ ace = "headtag.developer", label = "~b~Developer"},
+	{ ace = "headtag.staff", label = "~r~Staff"},
+	{ ace = "headtag.owner", label = "~p~Owner"},
 }
 
