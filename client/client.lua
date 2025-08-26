@@ -158,8 +158,20 @@ Citizen.CreateThread(function()
     end
 end)
 
-local mainMenu = RageUI.CreateMenu("Headtag Menu", "~b~Headtag Menu | By JoeV2", 1400, 100, nil, nil, 255, 255, 255, 255)
+
+CreateThread(function()
+    if not Config.Custombanner.enabled then return end
+
+    local RuntimeTXD = CreateRuntimeTxd('headtag:banner')
+    local Object = CreateDui(Config.Custombanner.url, 512, 128)
+
+    local dui = GetDuiHandle(Object)
+    CreateRuntimeTextureFromDuiHandle(RuntimeTXD, 'headtag:banner', dui)
+end)
+
+local mainMenu = RageUI.CreateMenu("Headtag Menu", "~b~Headtag Menu | By JoeV2", 1400, 100, (Config.Custombanner.enabled and 'headtag:banner' or nil), (Config.Custombanner.enabled and 'headtag:banner' or nil), 255, 255, 255, 255)
 mainMenu:SetTotalItemsPerPage(8)
+mainMenu:DisplayGlare(Config.Menu.glare)
 
 
 ---@diagnostic disable-next-line: inject-field
