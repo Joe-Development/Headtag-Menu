@@ -86,7 +86,7 @@ Config.allTags = 'headtags.all'
 -- Only one role should have default = true
 Config.roleList = {
     { ace = "headtag.member", label = "~g~Member", default = true },
-    { ace = "headtag.developer", label = "~b~Developer", default = true },
+    { ace = "headtag.developer", label = "~b~Developer"},
     { ace = "headtag.staff", label = "~r~Staff"},
     { ace = "headtag.owner", label = "~p~Owner"},
 }
