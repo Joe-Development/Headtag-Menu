@@ -2,7 +2,7 @@
 
 A FiveM resource that adds customizable head tags above players with ace-based permissions.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)
 
 ## Overview
 
