@@ -11,32 +11,34 @@ local hidePrefix = {}
 local hideTags = {}
 local activeTagTracker = {}
 local hideAll = false
-local red = 255
-local green = 255
-local blue = 255
 local noclip = {}
 
-function DrawText3D(x, y, z, text)
-    local onScreen, _x, _y = World3dToScreen2d(x, y, z)
-    if not onScreen then return end
+function DrawText3D(coords, text, size, font)
+    local vector = type(coords) == "vector3" and coords or vec(coords.x, coords.y, coords.z)
 
-    local dist = #(GetGameplayCamCoords() - vector3(x, y, z))
-    local scale = (1/dist) * 2 * (1/GetGameplayCamFov()) * 100
+    local camCoords = GetFinalRenderedCamCoord()
+    local distance = #(vector - camCoords)
 
-    SetTextScale(0.0*scale, 0.55*scale)
-    SetTextFont(0)
+    size = size or 1
+    font = font or 0
+
+    local scale = (size / distance) * 2
+    local fov = (1 / GetGameplayCamFov()) * 100
+    scale = scale * fov
+
+    SetTextScale(0.0, 0.55 * scale)
+    SetTextFont(font)
     SetTextProportional(true)
-    SetTextColour(red, green, blue, 255)
+    SetTextColour(255, 255, 255, 255)
     SetTextDropshadow(0, 0, 0, 0, 255)
-    SetTextEdge(2, 0, 0, 0, 150)
-    SetTextDropShadow()
-    SetTextOutline()
-    SetTextCentre(true)
-    SetTextEntry("STRING")
-    AddTextComponentString(text)
-    DrawText(_x, _y)
-end
 
+    BeginTextCommandDisplayText("STRING")
+    SetTextCentre(true)
+    AddTextComponentSubstringPlayerName(text)
+    SetDrawOrigin(vector.x, vector.y, vector.z, 0)
+    EndTextCommandDisplayText(0.0, 0.0)
+    ClearDrawOrigin()
+end
 
 
 RegisterNetEvent("jd-headtags:client:hideTag")
@@ -114,7 +116,7 @@ local function TriggerTagUpdate()
 
                 if HasValue(hidePrefix, playName) then
                     if targetPed ~= playerPed or Config.ShowOwnTag then
-                        DrawText3D(targetCoords.x, targetCoords.y, targetCoords.z + displayIDHeight, "~w~[" .. serverId .. "]")
+                        DrawText3D(vector3(targetCoords.x, targetCoords.y, targetCoords.z + displayIDHeight), "~w~[" .. serverId .. "]", 1, 0)
                     end
                     goto continue
                 end
@@ -128,11 +130,7 @@ local function TriggerTagUpdate()
 
                 displayName = displayName:gsub("{HEADTAG}", activeTag):gsub("{SERVER_ID}", serverId):gsub("{SPEAKING}", color)
 
-                red = NetworkIsPlayerTalking(activePlayers[i]) and 0 or 255
-                green = NetworkIsPlayerTalking(activePlayers[i]) and 0 or 255
-                blue = NetworkIsPlayerTalking(activePlayers[i]) and 255 or 255
-
-                DrawText3D(targetCoords.x, targetCoords.y, targetCoords.z + displayIDHeight, color .. displayName)
+                DrawText3D(vector3(targetCoords.x, targetCoords.y, targetCoords.z + displayIDHeight), color .. displayName, 1, 0)
             end
             ::continue::
         end

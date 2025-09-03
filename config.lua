@@ -35,7 +35,7 @@ Config.menu = {
 	y = 100,
 }
 
--- DEVELOPERS
+-- ## DEVELOPERS
 -- NO THIS IS NOT A NO CLIP
 -- this is the perm they need to trigger the server event to hide their full headtag and server id so when they are in no clip nothing is giving them away
 -- that they are there
@@ -64,8 +64,9 @@ Config.allTags = 'headtags.all'
 
 -- The Last in the index will be the highest role.
 -- aka the highest role will be the last one in the table or the bottem one.
+-- hey stinkers default can only be applied to one or it just will not work.... thats the point of a default role
 Config.roleList = {
-	{ ace = "headtag.member", label = "~g~Member"},
+	{ ace = "headtag.member", label = "~g~Member", default = true },
 	{ ace = "headtag.developer", label = "~b~Developer"},
 	{ ace = "headtag.staff", label = "~r~Staff"},
 	{ ace = "headtag.owner", label = "~p~Owner"},

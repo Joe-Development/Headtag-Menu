@@ -114,9 +114,19 @@ end)
 RegisterNetEvent('jd-headtags:server:getTags')
 AddEventHandler('jd-headtags:server:getTags', function()
     local roleAccess = {}
-    local defaultRole = (Config.roleList[1].label ~= nil and Config.roleList[1].label or "")
-    local highestRole = defaultRole
+    local defaultRole = ""
+    local highestRole = ""
     local hasAnyPermission = false
+
+    for i = 1, #Config.roleList do
+        local role = Config.roleList[i]
+        if role.default and IsPlayerAceAllowed(source, role.ace) then
+            defaultRole = role.label
+            break
+        end
+    end
+
+    highestRole = defaultRole
 
     for i = 1, #Config.roleList do
         local role = Config.roleList[i]
@@ -129,21 +139,16 @@ AddEventHandler('jd-headtags:server:getTags', function()
         end
     end
 
-    if hasAnyPermission then
-        prefixes[source] = roleAccess
+    prefixes[source] = hasAnyPermission and roleAccess or {}
 
-        if Config.AutoSetHighestRole then
-            activeTagTracker[source] = highestRole
-        else
-            activeTagTracker[source] = defaultRole
-        end
-    else
-        prefixes[source] = {}
+    if not hasAnyPermission then
         activeTagTracker[source] = ""
+    else
+        activeTagTracker[source] = Config.AutoSetHighestRole and highestRole or defaultRole
     end
 
     TriggerClientEvent("jd-headtags:client:updateTags", -1, prefixes, activeTagTracker, false)
-	TriggerClientEvent("jd-headtags:client:updateHeadtag", source, activeTagTracker[source])
+	TriggerClientEvent("jd-headtags:client:updateHeadtag", source, activeTagTracker[source] == "" and "N/A" or activeTagTracker[source])
 end)
 
 AddEventHandler('playerDropped', function()
@@ -200,4 +205,24 @@ AddEventHandler('jd-headtags:server:noclip', function()
     local source = source
 	if not IsPlayerAceAllowed(source, Config.noclip.ace) then return end
     TriggerClientEvent("jd-headtags:client:noclip", -1, source)
+end)
+
+CreateThread(function()
+    local count = 0
+    local roles = {}
+
+	for i = 1, #Config.roleList do
+        local role = Config.roleList[i]
+        if role.default then
+            count = count + 1
+            table.insert(roles, role.label)
+        end
+    end
+
+    if count > 1 then
+        print("^1[WARNING]^3 Multiple default roles detected in Config.roleList!")
+        print("^1[WARNING]^3 Found " .. count .. " default roles: " .. table.concat(roles, ", "))
+        print("^1[WARNING]^3 Only the first default role will be used: " .. roles[1])
+        print("^1[WARNING]^3 Please ensure only one role has default = true in your config^7")
+    end
 end)
