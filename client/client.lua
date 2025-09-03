@@ -30,7 +30,6 @@ function DrawText3D(coords, text, size, font)
     SetTextFont(font)
     SetTextProportional(true)
     SetTextColour(255, 255, 255, 255)
-    SetTextDropshadow(0, 0, 0, 0, 255)
 
     BeginTextCommandDisplayText("STRING")
     SetTextCentre(true)
