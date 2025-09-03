@@ -1,9 +1,15 @@
 # HeadTags System
-A FiveM resource that adds customizable head tags above players with role-based permissions.
 
-support discord and more [Discord](https://discord.gg/TZFPF2n5Ys)
+A FiveM resource that adds customizable head tags above players with ace-based permissions.
+
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+
+## Overview
+
+HeadTags System allows server administrators to display customizable tags above players' heads based on their roles and permissions. Perfect for roleplay servers to identify staff members and special roles at a glance.
 
 ## Features
+
 - Ace-based headtags using ACE permissions
 - Configurable display format and height
 - Toggle individual or all headtags
@@ -12,33 +18,29 @@ support discord and more [Discord](https://discord.gg/TZFPF2n5Ys)
 - Noclip compatibility
 
 ## Dependencies
+
 - [ox_lib](https://github.com/overextended/ox_lib)
 - [RageUI](https://github.com/Joe-Development/Headtag-Menu/releases/download/release/RageUI.zip)
 
-## Installation
+## Quick Start
+
 1. Download the latest release
 2. Extract to your resources folder
 3. Add to your `server.cfg`:
+   ```
+   ensure ox_lib
+   ensure RageUI
+   ensure Headtag-Menu
+   ```
+4. Configure permissions in your server.cfg (see documentation)
+5. Use `/headtags` in-game to access the menu
 
+## Documentation
 
-## Configuration
-The main configuration file (`config.lua`) allows you to customize:
+For detailed configuration options, commands, and developer information, please refer to the [documentation](./docs/documentation.md).
 
-- Debug mode
-- Display format
-- Viewing distance
-- Menu positioning
-- Ace permissions
-- And more
+## Support
 
-### Display Format
-You can customize the tag format using these variables:
-- `{HEADTAG}` - Player's active tag
-- `{SPEAKING}` - Speaking indicator color
-- `{SERVER_ID}` - Player's server ID
-
-Example:
-
-```lua
-Config.FormatDisplayName = "{HEADTAG} {SPEAKING}[{SERVER_ID}]"
-```
+For support or to report issues:
+- [Discord Server](https://discord.gg/TZFPF2n5Ys)
+- Created by JoeV2@Joe Development
