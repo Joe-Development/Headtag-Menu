@@ -138,8 +138,6 @@ end
 
 Citizen.CreateThread(function()
     local Wait = Citizen.Wait
-    local IsControlPressed = IsControlPressed
-    local IsControlJustReleased = IsControlJustReleased
 
     while true do
         local maxPlayers = #GetActivePlayers()
