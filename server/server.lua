@@ -157,12 +157,12 @@ end)
 
 RegisterNetEvent('jd-headtags:server:setTag')
 AddEventHandler('jd-headtags:server:setTag', function(index)
-	local ped = source
-	local success = SetUserTag(ped, index)
+	local source = source
+	local success = SetUserTag(source, index)
 
 	if success then
-		local tagName = GetTagNameByIndex(ped, index)
-		lib.notify(ped, {
+		local tagName = GetTagNameByIndex(source, index)
+		lib.notify(source, {
 			title = 'HeadTag',
 			description = 'Set your HeadTag to ' .. RemovePrefixes(tagName),
 			type = 'success',
@@ -170,7 +170,7 @@ AddEventHandler('jd-headtags:server:setTag', function(index)
 			duration = 5000,
 		})
 	else
-		lib.notify(ped, {
+		lib.notify(source, {
 			title = 'HeadTag',
 			description = 'Failed to set HeadTag',
 			type = 'error',
