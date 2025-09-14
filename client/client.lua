@@ -13,7 +13,6 @@ local noclip = {}
 
 function DrawText3D(x,  y, z, text, size, font)
     local camCoords = GetFinalRenderedCamCoord()
-    local distance = #(vector - camCoords)
     local distance = #(vec(x, y, z) - camCoords)
 
     size = size or 1
