@@ -26,7 +26,7 @@ function DrawText3D(x,  y, z, text, size, font)
     SetTextFont(font)
     SetTextProportional(true)
     SetTextColour(255, 255, 255, 255)
-
+    SetTextOutline()
     BeginTextCommandDisplayText("STRING")
     SetTextCentre(true)
     AddTextComponentSubstringPlayerName(text)
