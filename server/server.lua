@@ -193,7 +193,7 @@ end)
 RegisterNetEvent('jd-headtags:server:noclip')
 AddEventHandler('jd-headtags:server:noclip', function()
     local source = source
-	if not IsPlayerAceAllowed(source, Config.noclip.ace) then return end
+	if not IsPlayerAceAllowed(source, Config.NoClipAce) then return end
     TriggerClientEvent("jd-headtags:client:noclip", -1, source)
 end)
 

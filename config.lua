@@ -43,9 +43,7 @@ Config.menu = {
 	Lua Server Event that triggers the client to hide their headtag and server id
 	TriggerServerEvent("jd-headtags:server:noclip")
 ]]
-Config.noclip = {
-	ace = "headtags.noclip",
-}
+Config.NoClipAce = "headtags.noclip"
 
 -- HUD Configuration
 Config.hud = {
