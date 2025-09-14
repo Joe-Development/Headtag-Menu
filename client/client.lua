@@ -1,7 +1,5 @@
 local formatDisplayedName = Config.FormatDisplayName;
-local ignorePlayerNameDistance = false
-local playerNamesDist = Config.PlayerNamesDist
-local playerNamesDist2 = playerNamesDist * playerNamesDist
+local playerNamesDist = Config.PlayerNamesDist * Config.PlayerNamesDist
 local displayIDHeight = Config.DisplayHeight
 local isMenuOpen = false
 local searchQuery = ""
@@ -13,11 +11,10 @@ local activeTagTracker = {}
 local hideAll = false
 local noclip = {}
 
-function DrawText3D(coords, text, size, font)
-    local vector = type(coords) == "vector3" and coords or vec(coords.x, coords.y, coords.z)
-
+function DrawText3D(x,  y, z, text, size, font)
     local camCoords = GetFinalRenderedCamCoord()
     local distance = #(vector - camCoords)
+    local distance = #(vec(x, y, z) - camCoords)
 
     size = size or 1
     font = font or 0
@@ -34,7 +31,7 @@ function DrawText3D(coords, text, size, font)
     BeginTextCommandDisplayText("STRING")
     SetTextCentre(true)
     AddTextComponentSubstringPlayerName(text)
-    SetDrawOrigin(vector.x, vector.y, vector.z, 0)
+    SetDrawOrigin(x, y, z, 0)
     EndTextCommandDisplayText(0.0, 0.0)
     ClearDrawOrigin()
 end
@@ -102,9 +99,9 @@ local function TriggerTagUpdate()
             local activeTag = activeTagTracker[GetPlayerServerId(activePlayers[i])] or ''
             local targetCoords = GetEntityCoords(targetPed)
             local dx, dy, dz = playerCoords.x - targetCoords.x, playerCoords.y - targetCoords.y, playerCoords.z - targetCoords.z
-            local distance2 = dx*dx + dy*dy + dz*dz
+            local distance2 = dx * dx + dy * dy + dz * dz
 
-            if distance2 < playerNamesDist2 and (not ignorePlayerNameDistance) then
+            if distance2 < playerNamesDist then
                 local playName = GetPlayerName(activePlayers[i])
 
                 if targetPed == playerPed and not Config.ShowOwnTag then
@@ -115,7 +112,7 @@ local function TriggerTagUpdate()
 
                 if HasValue(hidePrefix, playName) then
                     if targetPed ~= playerPed or Config.ShowOwnTag then
-                        DrawText3D(vector3(targetCoords.x, targetCoords.y, targetCoords.z + displayIDHeight), "~w~[" .. serverId .. "]", 1, 0)
+                        DrawText3D(targetCoords.x, targetCoords.y, targetCoords.z + displayIDHeight, "~w~[" .. serverId .. "]", 1, 0)
                     end
                     goto continue
                 end
@@ -129,7 +126,7 @@ local function TriggerTagUpdate()
 
                 displayName = displayName:gsub("{HEADTAG}", activeTag):gsub("{SERVER_ID}", serverId):gsub("{SPEAKING}", color)
 
-                DrawText3D(vector3(targetCoords.x, targetCoords.y, targetCoords.z + displayIDHeight), color .. displayName, 1, 0)
+                DrawText3D(targetCoords.x, targetCoords.y, targetCoords.z + displayIDHeight, color .. displayName, 1, 0)
             end
             ::continue::
         end
@@ -140,12 +137,6 @@ Citizen.CreateThread(function()
     local Wait = Citizen.Wait
 
     while true do
-        local maxPlayers = #GetActivePlayers()
-        for i = 0, maxPlayers do
-            ---@diagnostic disable-next-line: undefined-global
-            N_0x31698aa80e0223f8(i)
-        end
-
         if showTags then
             TriggerTagUpdate()
         end
@@ -186,7 +177,7 @@ end, false)
 function OpenHeadtagMenu()
     if isMenuOpen then return end
 
-    local headtags = lib.callback.await('jd-headtags:return-tags')
+    local headtags = Prefixes[GetPlayerServerId(PlayerId())]
 
     if not headtags or #headtags == 0 then
         lib.notify({
