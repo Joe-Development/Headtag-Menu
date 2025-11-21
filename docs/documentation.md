@@ -60,17 +60,6 @@ Config.DisplayHeight = 1.3  -- Height of the headtag above the player
 Config.PlayerNamesDist = 15  -- Distance at which headtags are visible
 ```
 
-### HUD Configuration
-
-```lua
-Config.hud = {
-    enabled = true,  -- Enable/disable the headtag HUD
-    position = {
-        x = 30,  -- Distance from right edge of screen
-        y = 30   -- Distance from top of screen
-    }
-}
-```
 
 ### Role Configuration
 
@@ -166,7 +155,6 @@ TriggerServerEvent("jd-headtags:server:noclip")
 
 - `jd-headtags:client:hideTag` - Hide a specific player's tag
 - `jd-headtags:client:toggleAllTags` - Toggle visibility of all tags
-- `jd-headtags:client:updateHeadtag` - Update a player's headtag
 
 ## Troubleshooting
 

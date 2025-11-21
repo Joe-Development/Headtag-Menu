@@ -66,21 +66,9 @@ end)
 
 Citizen.CreateThread(function()
 	Wait(100);
-	SendNUIMessage({
-		type = 'config',
-		enabled = Config.hud.enabled,
-		position = Config.hud.position
-	})
 	TriggerServerEvent('jd-headtags:server:getTags');
 end)
 
-RegisterNetEvent('jd-headtags:client:updateHeadtag')
-AddEventHandler('jd-headtags:client:updateHeadtag', function(headtag)
-	SendNUIMessage({
-		type = 'update',
-		headtag = headtag
-	})
-end)
 
 local function TriggerTagUpdate()
     if hideAll then return end
