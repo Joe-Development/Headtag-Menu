@@ -54,7 +54,7 @@ Config.allTags = 'headtags.all'
 
 Config.Hud = {
     -- Enable or disable the HUD system
-    enabled = true,
+    enabled = false,
 
     -- Select the active HUD resource
     -- Make sure this matches a key in ResourceExports
